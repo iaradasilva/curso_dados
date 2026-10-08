@@ -2,7 +2,7 @@
 
 <h1>O que é o Software R?</h1>
 
-<p>O <strong>R</strong> é uma linguagem e ambiente de programação de código aberto (gratuito) focado em computação estatística, análise de dados e gráficos. É amplamente utilizado na área da **saúde, epidemiologia e bioestatística** devido ao seu poder de processamento e ecossistema de pacotes especializados.</p>
+<p>O <strong>R</strong> é uma linguagem e ambiente de programação de código aberto (gratuito) focado em computação estatística, análise de dados e gráficos. É amplamente utilizado na área da <strong>saúde, epidemiologia e bioestatística</strong> devido ao seu poder de processamento e ecossistema de pacotes especializados.</p>
 
 <div class="callout callout-tip">
     💡 <strong>Por que usar o R no Projeto O3 MOVER?</strong><br>
@@ -40,13 +40,41 @@
     ⚠️ <strong>Nota:</strong> Instale sempre o R base <em>antes</em> do RStudio para que a interface identifique o programa corretamente.
 </div>
 
-<h2>Primeiro Teste no R</h2>
+<h2>Primeiro Exemplo Prático em R (Dados de Saúde)</h2>
 
-<p>Após abrir o RStudio, você pode testar se o ambiente está funcionando digitando o comando abaixo no console:</p>
+<p>Copie e cole o código abaixo no console do RStudio para testar seu ambiente e rodar sua primeira análise descritiva com visualização gráfica:</p>
 
-<pre><code># Teste simples de código R
-versao <- R.version.string
-print(paste("Ambiente configurado com sucesso:", versao))
+<pre><code># 1. Verificar versão do R
+print(paste("Ambiente configurado:", R.version.string))
+
+# 2. Criar um pequeno conjunto de dados de saúde fictício
+dados_saude <- data.frame(
+  id_paciente = 1:5,
+  idade = c(45, 62, 35, 58, 50),
+  pressao_sistolica = c(120, 142, 118, 135, 128),
+  grupo_risco = c("Baixo", "Alto", "Baixo", "Médio", "Médio")
+)
+
+# 3. Exibir a tabela de dados no console
+print("--- Tabela de Pacientes ---")
+print(dados_saude)
+
+# 4. Calcular a média de idade e pressão sistólica
+media_idade <- mean(dados_saude$idade)
+media_pressao <- mean(dados_saude$pressao_sistolica)
+
+cat("\nMédia de Idade:", media_idade, "anos\n")
+cat("Média da Pressão Sistólica:", media_pressao, "mmHg\n")
+
+# 5. Gerar um gráfico simples
+barplot(
+  height = dados_saude$pressao_sistolica,
+  names.arg = paste("P", dados_saude$id_paciente),
+  col = "#10B981",
+  main = "Pressão Sistólica por Paciente",
+  xlab = "Pacientes",
+  ylab = "Pressão (mmHg)"
+)
 </code></pre>
 
 <div class="lesson-footer">
