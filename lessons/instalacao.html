@@ -77,6 +77,94 @@ barplot(
 )
 </code></pre>
 
+##########
+<span class="badge badge-green">Visão Geral • Configuração</span>
+
+<h1>Instalação e Configuração do Ambiente R</h1>
+
+<p>Para acompanhar o curso <strong>Análise de Dados e Modelagem Estatística Aplicada à Saúde (Projeto O3 MOVER)</strong>, é necessário instalar dois programas gratuitos e de código aberto: o <strong>R Base</strong> e a IDE <strong>RStudio</strong> (Posit).</p>
+
+<div class="callout callout-warning">
+    ⚠️ <strong>Regra de Ouro da Instalação:</strong> Instale SEMPRE o <strong>R Base primeiro</strong> e depois o <strong>RStudio</strong>. Se inverter a ordem, o RStudio não conseguirá localizar o motor do R.
+</div>
+
+<h2>1. Cartões de Download Direto</h2>
+
+<p>Clique nos botões abaixo para acessar as páginas oficiais de download correspondentes:</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+    
+    <!-- Card R Base -->
+    <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔵</div>
+        <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Passo 1: R Base</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;">O motor computacional e estatístico responsável pelo processamento dos dados.</p>
+        <a href="https://cran.r-project.org/" target="_blank" style="display: inline-block; background: var(--accent-green); color: #000; font-weight: 700; padding: 0.7rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">Baixar o R (CRAN) ↗</a>
+    </div>
+
+    <!-- Card RStudio -->
+    <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔷</div>
+        <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Passo 2: RStudio</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;">A interface visual (IDE) que facilita a escrita de scripts, gráficos e relatórios.</p>
+        <a href="https://posit.co/download/rstudio-desktop/" target="_blank" style="display: inline-block; background: #3B82F6; color: #FFF; font-weight: 700; padding: 0.7rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">Baixar RStudio Desktop ↗</a>
+    </div>
+
+</div>
+
+<h2>2. Passo a Passo de Instalação</h2>
+
+<h3>Para Usuários de Windows 🪟</h3>
+<ol>
+    <li>Acesse o site do CRAN e clique em <strong>"Download R for Windows"</strong>.</li>
+    <li>Clique em <strong>"base"</strong> e depois em <strong>"Download R 4.x.x for Windows"</strong>.</li>
+    <li>Execute o instalador baixado e avance clicando em <em>Avançar / Next</em> (pode manter todas as configurações padrão).</li>
+    <li>Em seguida, baixe o <strong>RStudio Desktop for Windows</strong> e execute o instalador até a conclusão.</li>
+</ol>
+
+<h3>Para Usuários de Mac (macOS) 🍎</h3>
+<ol>
+    <li>Acesse o site do CRAN e clique em <strong>"Download R for macOS"</strong>.</li>
+    <li>Escolha o arquivo <code>.pkg</code> adequado para o processador do seu Mac:
+        <ul>
+            <li><strong>Apple Silicon (M1/M2/M3/M4):</strong> Baixe a versão <code>arm64</code>.</li>
+            <li><strong>Processador Intel:</strong> Baixe a versão <code>x86_64</code>.</li>
+        </ul>
+    </li>
+    <li>Execute o arquivo baixado para instalar o R Base.</li>
+    <li>Por fim, baixe o <strong>RStudio Desktop for macOS</strong>, abra o arquivo <code>.dmg</code> e arraste o ícone do RStudio para a sua pasta <em>Aplicativos</em>.</li>
+</ol>
+
+<div class="callout callout-info">
+    💡 <strong>Dica de Ferramenta Alternativa (Sem Instalação):</strong><br>
+    Caso precise usar um computador institucional onde não possui permissão de administrador para instalar programas, você pode usar gratuitamente o <a href="https://posit.cloud/" target="_blank" style="color: var(--accent-green); text-decoration: underline;">Posit Cloud (RStudio na Nuvem) ↗</a> diretamente pelo navegador.
+</div>
+
+<h2>3. Testando e Instalando os Pacotes Principais do Curso</h2>
+
+<p>Com o <strong>RStudio aberto</strong>, você precisa instalar os pacotes essenciais que usaremos ao longo das aulas. Copie o código abaixo e cole no seu <strong>Console</strong> do RStudio:</p>
+
+<pre><code># 1. Testar se o R está funcionando
+cat("Ambiente R funcionando na versão:", R.version.string, "\n")
+
+# 2. Instalar os pacotes essenciais para Saúde e Bioestatística
+pacotes_curso <- c(
+  "tidyverse",  # Manipulação de dados e gráficos (ggplot2, dplyr)
+  "readxl",     # Leitura de planilhas Excel
+  "janitor",    # Limpeza e padronização de tabelas
+  "epidemia",   # Pacote para modelagem de doenças infecciosas
+  "sf"          # Análise e dados de saúde espacial
+)
+
+# Comando para baixar e instalar no RStudio
+install.packages(pacotes_curso)
+</code></pre>
+
+<div class="lesson-footer">
+    <span></span>
+    <a href="course.html?page=lesson1">Próximo: 01. Análise Exploratória →</a>
+</div>
+###########
 <div class="lesson-footer">
     <span></span>
     <a href="course.html?page=lesson1">Próximo: 01. Análise Exploratória →</a>
