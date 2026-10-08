@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Estatística | Iara da Silva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+    <!-- Bar de Navegação Superior -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌿 <span>CURSO ESTATÍSTICA</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="course.html?page=syllabus">Ementa</a></li>
+                <li><a href="course.html?page=lesson1" class="active">Lições</a></li>
+                <li><a href="https://github.com/iaradasilva/curso_dados" target="_blank">GitHub ↗</a></li>
+                <li><a href="#" target="_blank">Contato ↗</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Estrutura Principal -->
+    <div class="course-layout">
+        <!-- Sidebar Escura -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">VISÃO GERAL</div>
+                <ul class="sidebar-menu">
+                    <li><a href="course.html?page=overview" id="link-overview">Curso</a></li>
+                    <li><a href="course.html?page=syllabus" id="link-syllabus">Ementa</a></li>
+                    <li><a href="course.html?page=instalacao" id="link-instalacao">Instalação</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">CONTEÚDO</div>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="course.html?page=lesson1" id="link-lesson1">Módulo 1: Introdução à EDA</a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="course.html?page=lesson1">O que é EDA?</a></li>
+                            <li><a href="course.html?page=lesson1_python">main.py / colab</a></li>
+                            <li><a href="course.html?page=lesson1_dados">datasets</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="course.html?page=lesson2" id="link-lesson2">Módulo 2: Probabilidade</a></li>
+                    <li><a href="course.html?page=lesson3" id="link-lesson3">Módulo 3: Inferência</a></li>
+                    <li><a href="course.html?page=lesson4" id="link-lesson4">Módulo 4: Teste de Hipóteses</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Área Principal de Conteúdo -->
+        <main class="content-area">
+            <div class="card-container" id="lesson-content">
+                <p>Carregando conteúdo...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script de Carregamento Dinâmico -->
+    <script>
+        async function loadLesson() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'lesson1';
+            
+            // Destacar o item ativo na barra lateral
+            document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById(`link-${page}`);
+            if(activeLink) activeLink.classList.add('active');
+
+            const contentDiv = document.getElementById('lesson-content');
+
+            try {
+                const response = await fetch(`lessons/${page}.html`);
+                if (response.ok) {
+                    contentDiv.innerHTML = await response.text();
+                } else {
+                    contentDiv.innerHTML = '<h1>⚠️ Em Construção</h1><p>Esta lição ainda está a ser criada.</p>';
+                }
+            } catch (error) {
+                contentDiv.innerHTML = '<h1>Erro ao carregar</h1><p>Não foi possível carregar esta lição.</p>';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadLesson);
+    </script>
+</body>
+</html>
