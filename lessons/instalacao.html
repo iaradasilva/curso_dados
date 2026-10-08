@@ -1,0 +1,55 @@
+<span class="badge badge-green">Visão Geral • Introdução</span>
+
+<h1>O que é o Software R?</h1>
+
+<p>O <strong>R</strong> é uma linguagem e ambiente de programação de código aberto (gratuito) focado em computação estatística, análise de dados e gráficos. É amplamente utilizado na área da **saúde, epidemiologia e bioestatística** devido ao seu poder de processamento e ecossistema de pacotes especializados.</p>
+
+<div class="callout callout-tip">
+    💡 <strong>Por que usar o R no Projeto O3 MOVER?</strong><br>
+    O R permite realizar desde análises descritivas básicas até a modelagem de regressão e séries temporais com dados de saúde pública de forma 100% reproduzível.
+</div>
+
+<h2>Principais Vantagens do R na Saúde</h2>
+
+<ul>
+    <li><strong>Gratuito e Código Aberto:</strong> Pode ser instalado em qualquer sistema operacional sem custos de licença.</li>
+    <li><strong>Reprodutibilidade Científica:</strong> Todo o fluxo de análise é registrado em scripts, garantindo que qualquer pesquisador consiga replicar os resultados.</li>
+    <li><strong>Pacotes Especializados:</strong> Milhares de bibliotecas criadas pela comunidade para epidemiologia, saúde pública e estatística espacial (como <code>tidyverse</code>, <code>epidemia</code>, <code>sf</code> e <code>survival</code>).</li>
+    <li><strong>Visualização de Dados:</strong> Capacidade de gerar gráficos de alta qualidade para artigos científicos e relatórios públicos.</li>
+</ul>
+
+<h2>O R e o RStudio</h2>
+
+<p>Para trabalhar com o R de forma mais intuitiva, utilizamos o <strong>RStudio</strong> (Posit), que é a Interface de Desenvolvimento Integrado (IDE) para a linguagem:</p>
+
+<ul>
+    <li><strong>R (O "Motor"):</strong> Executa os cálculos estatísticos e processa os dados.</li>
+    <li><strong>RStudio (O "Painel"):</strong> Facilita a escrita do código, visualização de gráficos, tabelas e organização de projetos.</li>
+</ul>
+
+<h2>Instalação</h2>
+
+<p>Para configurar o seu ambiente de trabalho, siga a ordem de instalação:</p>
+
+<ol>
+    <li>Baixe e instale o <strong>R base</strong> diretamente do CRAN: <a href="https://cran.r-project.org/" target="_blank" style="color: var(--accent-green);">cran.r-project.org ↗</a></li>
+    <li>Baixe e instale o <strong>RStudio Desktop</strong>: <a href="https://posit.co/download/rstudio-desktop/" target="_blank" style="color: var(--accent-green);">posit.co/rstudio ↗</a></li>
+</ol>
+
+<div class="callout callout-warning">
+    ⚠️ <strong>Nota:</strong> Instale sempre o R base <em>antes</em> do RStudio para que a interface identifique o programa corretamente.
+</div>
+
+<h2>Primeiro Teste no R</h2>
+
+<p>Após abrir o RStudio, você pode testar se o ambiente está funcionando digitando o comando abaixo no console:</p>
+
+<pre><code># Teste simples de código R
+versao <- R.version.string
+print(paste("Ambiente configurado com sucesso:", versao))
+</code></pre>
+
+<div class="lesson-footer">
+    <span></span>
+    <a href="course.html?page=lesson1">Próximo: 01. Análise Exploratória →</a>
+</div>
