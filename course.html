@@ -1,8 +1,11 @@
 <script>
     async function loadLesson() {
         const urlParams = new URLSearchParams(window.location.search);
-        // Define 'instalacao' ou 'lesson0' como padrão inicial se não houver parâmetro
-        const page = urlParams.get('page') || 'instalacao'; 
+        let page = urlParams.get('page') || 'instalacao'; 
+
+        // 🔒 SEGURANÇA: Permite apenas letras, números, hífens e underlines (Evita XSS e Path Traversal)
+        page = page.replace(/[^a-zA-Z0-9_-]/g, '');
+        if (!page) page = 'instalacao';
 
         // Destacar o item ativo na sidebar
         document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
@@ -12,7 +15,6 @@
         const contentDiv = document.getElementById('lesson-content');
 
         try {
-            // Busca o arquivo dentro da pasta lessons/
             const response = await fetch(`lessons/${page}.html`);
             if (response.ok) {
                 contentDiv.innerHTML = await response.text();
@@ -31,8 +33,18 @@
         }
     }
 
-    // Recarrega o conteúdo quando o usuário clica nos botões voltar/avançar do navegador
+    // Navegação sem recarregar a página ao clicar nos links da sidebar
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('.sidebar-menu a');
+        if (link) {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            history.pushState(null, '', href);
+            loadLesson();
+        }
+    });
+
+    // Recarrega o conteúdo nos botões voltar/avançar do navegador
     window.addEventListener('popstate', loadLesson);
     window.addEventListener('DOMContentLoaded', loadLesson);
 </script>
-
