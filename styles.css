@@ -26,7 +26,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar Superior */
+/* Navbar */
 .navbar {
     background-color: rgba(11, 15, 23, 0.85);
     backdrop-filter: blur(12px);
@@ -57,24 +57,6 @@ body {
 }
 
 .logo span { color: #FFFFFF; }
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--text-primary);
-}
 
 /* Layout Principal */
 .course-layout {
@@ -154,7 +136,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Estilização do Conteúdo da Aula */
 .card-container h1 {
     font-size: 2.2rem;
     font-weight: 800;
@@ -210,13 +191,7 @@ body {
     color: #6EE7B7;
 }
 
-.callout-warning {
-    background: rgba(245, 158, 11, 0.1);
-    border-color: #F59E0B;
-    color: #FDE68A;
-}
-
-/* Badges / Selos */
+/* Badges e Selos */
 .badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -231,7 +206,7 @@ body {
 .badge-green { background: rgba(16, 185, 129, 0.2); color: #34D399; }
 .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
 
-/* Rodapé dos cards de aula */
+/* Rodapé da Aula */
 .lesson-footer {
     display: flex;
     justify-content: space-between;
@@ -244,9 +219,4 @@ body {
     color: var(--accent-green);
     text-decoration: none;
     font-weight: 600;
-    transition: opacity 0.2s;
-}
-
-.lesson-footer a:hover {
-    opacity: 0.8;
 }
