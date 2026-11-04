@@ -1,171 +1,21 @@
-<span class="badge badge-green">Visão Geral • Introdução</span>
+<span class="badge badge-green">Módulo 1 • Configuração</span>
 
-<h1>O que é o Software R?</h1>
+<h1>Instalação do Ambiente</h1>
 
-<p>O <strong>R</strong> é uma linguagem e ambiente de programação de código aberto (gratuito) focado em computação estatística, análise de dados e gráficos. É amplamente utilizado na área da <strong>saúde, epidemiologia e bioestatística</strong> devido ao seu poder de processamento e ecossistema de pacotes especializados.</p>
+<p>Bem-vindo ao curso de dados! Nesta primeira etapa, vamos configurar o ambiente necessário para realizar o carregamento e processamento dos dados da saúde.</p>
 
 <div class="callout callout-tip">
-    💡 <strong>Por que usar o R?</strong><br>
-    O R permite realizar desde análises descritivas básicas até a modelagem de regressão e séries temporais com dados de saúde pública de forma 100% reproduzível.
+    💡 Certifique-se de ter o Python 3.10+ instalado no seu computador antes de continuar.
 </div>
 
-<h2>Principais Vantagens do R</h2>
-
+<h2>Próximos Passos</h2>
 <ul>
-    <li><strong>Gratuito e Código Aberto:</strong> Pode ser instalado em qualquer sistema operacional sem custos de licença.</li>
-    <li><strong>Reprodutibilidade Científica:</strong> Todo o fluxo de análise é registrado em scripts, garantindo que qualquer pesquisador consiga replicar os resultados.</li>
-    <li><strong>Pacotes Especializados:</strong> Milhares de bibliotecas criadas pela comunidade para epidemiologia, saúde pública e estatística espacial (como <code>tidyverse</code>, <code>epidemia</code>, <code>sf</code> e <code>survival</code>).</li>
-    <li><strong>Visualização de Dados:</strong> Capacidade de gerar gráficos de alta qualidade para artigos científicos e relatórios públicos.</li>
+    <li>Configuração do ambiente virtual (venv).</li>
+    <li>Instalação das bibliotecas necessárias (Pandas, Requests).</li>
+    <li>Teste de conexão com a API/Servidores.</li>
 </ul>
-
-<h2>O R e o RStudio</h2>
-
-<p>Para trabalhar com o R de forma mais intuitiva, utilizamos o <strong>RStudio</strong> (Posit), que é a Interface de Desenvolvimento Integrado (IDE) para a linguagem:</p>
-
-<ul>
-    <li><strong>R (O "Motor"):</strong> Executa os cálculos estatísticos e processa os dados.</li>
-    <li><strong>RStudio (O "Painel"):</strong> Facilita a escrita do código, visualização de gráficos, tabelas e organização de projetos.</li>
-</ul>
-
-<h2>Instalação</h2>
-
-<p>Para configurar o seu ambiente de trabalho, siga a ordem de instalação:</p>
-
-<ol>
-    <li>Baixe e instale o <strong>R base</strong> diretamente do CRAN: <a href="https://cran.r-project.org/" target="_blank" style="color: var(--accent-green);">cran.r-project.org ↗</a></li>
-    <li>Baixe e instale o <strong>RStudio Desktop</strong>: <a href="https://posit.co/download/rstudio-desktop/" target="_blank" style="color: var(--accent-green);">posit.co/rstudio ↗</a></li>
-</ol>
-
-<div class="callout callout-warning">
-    ⚠️ <strong>Nota:</strong> Instale sempre o R base <em>antes</em> do RStudio para que a interface identifique o programa corretamente.
-</div>
-
-<h2>Primeiro Exemplo Prático em R (Dados de Saúde)</h2>
-
-<p>Copie e cole o código abaixo no console do RStudio para testar seu ambiente e rodar sua primeira análise descritiva com visualização gráfica:</p>
-
-<pre><code># 1. Verificar versão do R
-print(paste("Ambiente configurado:", R.version.string))
-
-# 2. Criar um pequeno conjunto de dados de saúde fictício
-dados_saude <- data.frame(
-  id_paciente = 1:5,
-  idade = c(45, 62, 35, 58, 50),
-  pressao_sistolica = c(120, 142, 118, 135, 128),
-  grupo_risco = c("Baixo", "Alto", "Baixo", "Médio", "Médio")
-)
-
-# 3. Exibir a tabela de dados no console
-print("--- Tabela de Pacientes ---")
-print(dados_saude)
-
-# 4. Calcular a média de idade e pressão sistólica
-media_idade <- mean(dados_saude$idade)
-media_pressao <- mean(dados_saude$pressao_sistolica)
-
-cat("\nMédia de Idade:", media_idade, "anos\n")
-cat("Média da Pressão Sistólica:", media_pressao, "mmHg\n")
-
-# 5. Gerar um gráfico simples
-barplot(
-  height = dados_saude$pressao_sistolica,
-  names.arg = paste("P", dados_saude$id_paciente),
-  col = "#10B981",
-  main = "Pressão Sistólica por Paciente",
-  xlab = "Pacientes",
-  ylab = "Pressão (mmHg)"
-)
-</code></pre>
-
-##########
-<span class="badge badge-green">Visão Geral • Configuração</span>
-
-<h1>Instalação e Configuração do Ambiente R</h1>
-
-<p>Para acompanhar o curso <strong>Análise de Dados e Modelagem Estatística Aplicada à Saúde (Projeto O3 MOVER)</strong>, é necessário instalar dois programas gratuitos e de código aberto: o <strong>R Base</strong> e a IDE <strong>RStudio</strong> (Posit).</p>
-
-<div class="callout callout-warning">
-    ⚠️ <strong>Regra de Ouro da Instalação:</strong> Instale SEMPRE o <strong>R Base primeiro</strong> e depois o <strong>RStudio</strong>. Se inverter a ordem, o RStudio não conseguirá localizar o motor do R.
-</div>
-
-<h2>1. Cartões de Download Direto</h2>
-
-<p>Clique nos botões abaixo para acessar as páginas oficiais de download correspondentes:</p>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-    
-    <!-- Card R Base -->
-    <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; text-align: center;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔵</div>
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Passo 1: R Base</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;">O motor computacional e estatístico responsável pelo processamento dos dados.</p>
-        <a href="https://cran.r-project.org/" target="_blank" style="display: inline-block; background: var(--accent-green); color: #000; font-weight: 700; padding: 0.7rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">Baixar o R (CRAN) ↗</a>
-    </div>
-
-    <!-- Card RStudio -->
-    <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; text-align: center;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔷</div>
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Passo 2: RStudio</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;">A interface visual (IDE) que facilita a escrita de scripts, gráficos e relatórios.</p>
-        <a href="https://posit.co/download/rstudio-desktop/" target="_blank" style="display: inline-block; background: #3B82F6; color: #FFF; font-weight: 700; padding: 0.7rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">Baixar RStudio Desktop ↗</a>
-    </div>
-
-</div>
-
-<h2>2. Passo a Passo de Instalação</h2>
-
-<h3>Para Usuários de Windows 🪟</h3>
-<ol>
-    <li>Acesse o site do CRAN e clique em <strong>"Download R for Windows"</strong>.</li>
-    <li>Clique em <strong>"base"</strong> e depois em <strong>"Download R 4.x.x for Windows"</strong>.</li>
-    <li>Execute o instalador baixado e avance clicando em <em>Avançar / Next</em> (pode manter todas as configurações padrão).</li>
-    <li>Em seguida, baixe o <strong>RStudio Desktop for Windows</strong> e execute o instalador até a conclusão.</li>
-</ol>
-
-<h3>Para Usuários de Mac (macOS) 🍎</h3>
-<ol>
-    <li>Acesse o site do CRAN e clique em <strong>"Download R for macOS"</strong>.</li>
-    <li>Escolha o arquivo <code>.pkg</code> adequado para o processador do seu Mac:
-        <ul>
-            <li><strong>Apple Silicon (M1/M2/M3/M4):</strong> Baixe a versão <code>arm64</code>.</li>
-            <li><strong>Processador Intel:</strong> Baixe a versão <code>x86_64</code>.</li>
-        </ul>
-    </li>
-    <li>Execute o arquivo baixado para instalar o R Base.</li>
-    <li>Por fim, baixe o <strong>RStudio Desktop for macOS</strong>, abra o arquivo <code>.dmg</code> e arraste o ícone do RStudio para a sua pasta <em>Aplicativos</em>.</li>
-</ol>
-
-<div class="callout callout-info">
-    💡 <strong>Dica de Ferramenta Alternativa (Sem Instalação):</strong><br>
-    Caso precise usar um computador institucional onde não possui permissão de administrador para instalar programas, você pode usar gratuitamente o <a href="https://posit.cloud/" target="_blank" style="color: var(--accent-green); text-decoration: underline;">Posit Cloud (RStudio na Nuvem) ↗</a> diretamente pelo navegador.
-</div>
-
-<h2>3. Testando e Instalando os Pacotes Principais do Curso</h2>
-
-<p>Com o <strong>RStudio aberto</strong>, você precisa instalar os pacotes essenciais que usaremos ao longo das aulas. Copie o código abaixo e cole no seu <strong>Console</strong> do RStudio:</p>
-
-<pre><code># 1. Testar se o R está funcionando
-cat("Ambiente R funcionando na versão:", R.version.string, "\n")
-
-# 2. Instalar os pacotes essenciais para Saúde e Bioestatística
-pacotes_curso <- c(
-  "tidyverse",  # Manipulação de dados e gráficos (ggplot2, dplyr)
-  "readxl",     # Leitura de planilhas Excel
-  "janitor",    # Limpeza e padronização de tabelas
-  "epidemia",   # Pacote para modelagem de doenças infecciosas
-  "sf"          # Análise e dados de saúde espacial
-)
-
-# Comando para baixar e instalar no RStudio
-install.packages(pacotes_curso)
-</code></pre>
 
 <div class="lesson-footer">
     <span></span>
-    <a href="course.html?page=lesson1">Próximo: 01. Análise Exploratória →</a>
-</div>
-###########
-<div class="lesson-footer">
-    <span></span>
-    <a href="course.html?page=lesson1">Próximo: 01. Análise Exploratória →</a>
+    <a href="?page=lesson0">Próximo: Plataforma iSUS →</a>
 </div>
