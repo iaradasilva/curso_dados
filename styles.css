@@ -84,7 +84,7 @@ body {
     min-height: calc(100vh - 65px);
 }
 
-/* Sidebar Estilizada */
+/* Sidebar */
 .sidebar {
     width: 290px;
     background-color: var(--bg-sidebar);
@@ -138,7 +138,7 @@ body {
     font-weight: 600;
 }
 
-/* Área do Conteúdo Central */
+/* Área de Conteúdo Central */
 .content-area {
     flex: 1;
     padding: 2.5rem 3.5rem;
@@ -154,7 +154,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Tipografia */
+/* Estilização do Conteúdo da Aula */
 .card-container h1 {
     font-size: 2.2rem;
     font-weight: 800;
@@ -189,7 +189,7 @@ body {
     margin-bottom: 0.6rem;
 }
 
-/* Callouts */
+/* Callouts / Avisos */
 .callout {
     padding: 1.2rem;
     border-radius: 10px;
@@ -216,48 +216,7 @@ body {
     color: #FDE68A;
 }
 
-/* Rodapé das lições */
-.lesson-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.lesson-footer a {
-    color: var(--accent-green);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-/* Blocos de Código e Badges */
-code {
-    background-color: var(--code-bg);
-    border: 1px solid var(--code-border);
-    color: #A7F3D0;
-    padding: 0.2rem 0.45rem;
-    border-radius: 6px;
-    font-family: monospace;
-    font-size: 0.88rem;
-}
-
-pre {
-    background-color: var(--code-bg);
-    border: 1px solid var(--code-border);
-    padding: 1.2rem;
-    border-radius: 10px;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-}
-
-pre code {
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: #E5E7EB;
-}
-
+/* Badges / Selos */
 .badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -271,3 +230,23 @@ pre code {
 
 .badge-green { background: rgba(16, 185, 129, 0.2); color: #34D399; }
 .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+
+/* Rodapé dos cards de aula */
+.lesson-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.lesson-footer a {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.lesson-footer a:hover {
+    opacity: 0.8;
+}
