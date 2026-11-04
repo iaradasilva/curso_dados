@@ -3,48 +3,60 @@
         const urlParams = new URLSearchParams(window.location.search);
         let page = urlParams.get('page') || 'instalacao'; 
 
-        // 🔒 SEGURANÇA: Permite apenas letras, números, hífens e underlines (Evita XSS e Path Traversal)
+        // Sanitização contra Path Traversal e XSS
         page = page.replace(/[^a-zA-Z0-9_-]/g, '');
         if (!page) page = 'instalacao';
 
-        // Destacar o item ativo na sidebar
+        // Destacar o link ativo na sidebar
         document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
         const activeLink = document.getElementById(`link-${page}`);
         if (activeLink) activeLink.classList.add('active');
 
         const contentDiv = document.getElementById('lesson-content');
 
+        // Se estiver rodando sem servidor HTTP (file://), avisa no console
+        if (window.location.protocol === 'file:') {
+            console.warn('⚠️ AVISO: O fetch() pode ser bloqueado ao abrir arquivos diretamente no navegador via file://. Use um servidor local (ex: Live Server no VS Code).');
+        }
+
         try {
-            const response = await fetch(`lessons/${page}.html`);
+            const filePath = `lessons/${page}.html`;
+            const response = await fetch(filePath);
+
             if (response.ok) {
-                contentDiv.innerHTML = await response.text();
+                const htmlText = await response.text();
+                contentDiv.innerHTML = htmlText;
             } else {
+                console.error(`Erro ${response.status}: Não foi possível localizar o arquivo em "${filePath}"`);
                 contentDiv.innerHTML = `
                     <span class="badge badge-blue">Em Breve</span>
                     <h1>⚠️ Conteúdo em Construção</h1>
-                    <p>Esta lição está a ser preparada para o curso.</p>
+                    <p>A lição <strong>${page}</strong> ainda não está disponível.</p>
                     <div class="callout callout-info">
-                        💡 Volte em breve para conferir o material completo!
+                        💡 Verifique se o arquivo <code>lessons/${page}.html</code> existe na pasta do seu projeto.
                     </div>
                 `;
             }
         } catch (error) {
-            contentDiv.innerHTML = '<h1>Erro ao carregar o conteúdo.</h1>';
+            console.error('Erro na requisição fetch:', error);
+            contentDiv.innerHTML = '<h1>Erro ao carregar o conteúdo. Abra o Console (F12) para ver os detalhes.</h1>';
         }
     }
 
-    // Navegação sem recarregar a página ao clicar nos links da sidebar
+    // Intercepta o clique dos links da sidebar para navegação sem refresh
     document.addEventListener('click', (e) => {
         const link = e.target.closest('.sidebar-menu a');
         if (link) {
-            e.preventDefault();
             const href = link.getAttribute('href');
-            history.pushState(null, '', href);
-            loadLesson();
+            // Apenas se for um link de parâmetro interno (ex: ?page=...)
+            if (href && href.startsWith('?page=')) {
+                e.preventDefault();
+                history.pushState(null, '', href);
+                loadLesson();
+            }
         }
     });
 
-    // Recarrega o conteúdo nos botões voltar/avançar do navegador
     window.addEventListener('popstate', loadLesson);
     window.addEventListener('DOMContentLoaded', loadLesson);
 </script>
