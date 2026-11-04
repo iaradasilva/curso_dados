@@ -189,7 +189,7 @@ body {
     margin-bottom: 0.6rem;
 }
 
-/* Callouts / Avisos Especiais */
+/* Callouts */
 .callout {
     padding: 1.2rem;
     border-radius: 10px;
@@ -216,14 +216,29 @@ body {
     color: #FDE68A;
 }
 
-/* Blocos de Código e Tags */
+/* Rodapé das lições */
+.lesson-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.lesson-footer a {
+    color: var(--accent-green);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Blocos de Código e Badges */
 code {
     background-color: var(--code-bg);
     border: 1px solid var(--code-border);
     color: #A7F3D0;
     padding: 0.2rem 0.45rem;
     border-radius: 6px;
-    font-family: 'Fira Code', Consolas, Monaco, monospace;
+    font-family: monospace;
     font-size: 0.88rem;
 }
 
@@ -243,7 +258,6 @@ pre code {
     color: #E5E7EB;
 }
 
-/* Badges / Selos de Aula */
 .badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -256,4 +270,4 @@ pre code {
 }
 
 .badge-green { background: rgba(16, 185, 129, 0.2); color: #34D399; }
-.badge-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA
+.badge-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
