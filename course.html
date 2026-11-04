@@ -3,31 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso de Dados</title>
-    <!-- O ?v=1.2 força a atualização do CSS e evita problemas de cache -->
-    <link rel="stylesheet" href="./style.css?v=1.2">
+    <title>VEINCourse</title>
+    <link rel="stylesheet" href="./style.css?v=2.0">
 </head>
 <body>
+
+    <!-- Header / Navbar -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="course.html" class="logo">Curso<span>Dados</span></a>
+            <a href="course.html" class="logo">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text-green">VEIN</span><span class="logo-text-white">Course</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Ementa</a></li>
+                <li><a href="#" class="active">Lições</a></li>
+                <li><a href="#" target="_blank">Docs ↗</a></li>
+                <li><a href="#" target="_blank">GitHub ↗</a></li>
+                <li><a href="#" target="_blank">Discord ↗</a></li>
+            </ul>
         </div>
     </header>
 
+    <!-- Layout da Página -->
     <div class="course-layout">
+        <!-- Sidebar -->
         <aside class="sidebar">
+            
             <div class="sidebar-section">
-                <div class="sidebar-title">Módulos</div>
+                <div class="sidebar-title">VISÃO GERAL</div>
                 <ul class="sidebar-menu">
+                    <li><a href="?page=curso" id="link-curso">Curso</a></li>
+                    <li><a href="?page=ementa" id="link-ementa">Ementa</a></li>
                     <li><a href="?page=instalacao" id="link-instalacao">Instalação</a></li>
-                    <li><a href="?page=lesson0" id="link-lesson0">Plataforma iSUS</a></li>
+                    <li><a href="?page=inventarios" id="link-inventarios">Inventários</a></li>
                 </ul>
             </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">CONTEÚDO</div>
+                <ul class="sidebar-menu">
+                    <li><a href="?page=lesson0" id="link-lesson0">Introdução ao VEIN</a></li>
+                    <li><a href="?page=onde-rodar" id="link-onde-rodar">Onde rodar?</a></li>
+                    <li>
+                        <a href="?page=brazil_bu" id="link-brazil_bu">brazil_bu</a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="?page=main_r">main.R</a></li>
+                            <li><a href="?page=config">config</a></li>
+                            <li><a href="?page=net">net</a></li>
+                            <li><a href="?page=traffic">traffic</a></li>
+                            <li><a href="?page=fuel_eval">fuel_eval</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
         </aside>
 
+        <!-- Área Central -->
         <main class="content-area">
             <div class="card-container" id="lesson-content">
-                <!-- Conteúdo das aulas é injetado aqui -->
+                <!-- Conteúdo dinâmico injetado aqui -->
             </div>
         </main>
     </div>
@@ -35,13 +72,12 @@
     <script>
         async function loadLesson() {
             const urlParams = new URLSearchParams(window.location.search);
-            let page = urlParams.get('page') || 'instalacao'; 
+            let page = urlParams.get('page') || 'lesson0'; 
 
-            // Sanitização contra Path Traversal e XSS
             page = page.replace(/[^a-zA-Z0-9_-]/g, '');
-            if (!page) page = 'instalacao';
+            if (!page) page = 'lesson0';
 
-            // Destaca o link ativo na sidebar
+            // Limpa item ativo anterior
             document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
             const activeLink = document.getElementById(`link-${page}`);
             if (activeLink) activeLink.classList.add('active');
@@ -50,17 +86,12 @@
 
             try {
                 const response = await fetch(`./lessons/${page}.html`);
-
                 if (response.ok) {
                     contentDiv.innerHTML = await response.text();
                 } else {
                     contentDiv.innerHTML = `
-                        <span class="badge badge-blue">Em Breve</span>
-                        <h1>⚠️ Conteúdo em Construção</h1>
-                        <p>A lição <strong>${page}</strong> ainda não está disponível.</p>
-                        <div class="callout callout-info">
-                            💡 Volte em breve para conferir o material completo!
-                        </div>
+                        <h1>Conteúdo em Construção</h1>
+                        <p>A lição <strong>${page}</strong> ainda está sendo elaborada.</p>
                     `;
                 }
             } catch (error) {
@@ -68,17 +99,12 @@
             }
         }
 
-        // Navegação sem recarregar a página (SPA)
+        // Troca de página sem refresh
         document.addEventListener('click', (e) => {
-            const link = e.target.closest('.sidebar-menu a, .lesson-footer a');
+            const link = e.target.closest('.sidebar-menu a, .sidebar-submenu a');
             if (link) {
                 const href = link.getAttribute('href');
-                if (href && href.startsWith('course.html?page=')) {
-                    e.preventDefault();
-                    const pageParam = href.split('?')[1];
-                    history.pushState(null, '', `?${pageParam}`);
-                    loadLesson();
-                } else if (href && href.startsWith('?page=')) {
+                if (href && href.startsWith('?page=')) {
                     e.preventDefault();
                     history.pushState(null, '', href);
                     loadLesson();
