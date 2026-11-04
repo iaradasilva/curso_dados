@@ -1,220 +1,45 @@
-:root {
-    --bg-main: #0B0E14;
-    --bg-card: #121822;
-    --bg-sidebar: #0B0E14;
-    --text-primary: #ECEFF4;
-    --text-secondary: #9CA3AF;
-    --text-muted: #6B7280;
-    --accent-green: #10B981;
-    --accent-green-dark: #064E3B;
-    --active-bg: rgba(16, 185, 129, 0.12);
-    --border-color: #1F2937;
-    --code-bg: #1E293B;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
+/* Estilização da Seção da Equipe */
+.team-list {
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* Header / Navbar Superior */
-.navbar {
-    background-color: var(--bg-main);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 3rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.logo {
+.team-member {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-weight: 800;
-    font-size: 1.35rem;
-    text-decoration: none;
-    letter-spacing: -0.02em;
+    gap: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.4rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
 }
 
-.logo-icon {
-    color: var(--accent-green);
-    font-size: 1.4rem;
+.team-member:hover {
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
-.logo-text-green { color: var(--accent-green); }
-.logo-text-white { color: #FFFFFF; }
+.team-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-green);
+}
 
-.nav-links {
+.team-info {
     display: flex;
-    gap: 2rem;
-    list-style: none;
+    flex-direction: column;
 }
 
-.nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: #FFFFFF;
-    font-weight: 600;
-}
-
-/* Layout Geral */
-.course-layout {
-    display: flex;
-    max-width: 1400px;
-    margin: 0 auto;
-    min-height: calc(100vh - 65px);
-}
-
-/* Sidebar Esquerda */
-.sidebar {
-    width: 260px;
-    background-color: var(--bg-sidebar);
-    padding: 2rem 1.2rem 2rem 1.5rem;
-    flex-shrink: 0;
-    overflow-y: auto;
-}
-
-.sidebar-section {
-    margin-bottom: 2rem;
-}
-
-.sidebar-title {
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-.sidebar-menu {
-    list-style: none;
-}
-
-.sidebar-menu li {
-    margin-bottom: 0.25rem;
-}
-
-.sidebar-menu a {
-    display: block;
-    padding: 0.45rem 0.75rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 6px;
-    transition: all 0.2s;
-}
-
-.sidebar-menu a:hover {
-    color: #FFFFFF;
-}
-
-.sidebar-menu a.active {
-    color: var(--accent-green);
-    background-color: var(--active-bg);
-    font-weight: 600;
-}
-
-/* Submenu com Linha Guia Vertical à Esquerda */
-.sidebar-submenu {
-    list-style: none;
-    margin-left: 0.75rem;
-    padding-left: 1rem;
-    border-left: 1px solid var(--border-color);
-    margin-top: 0.3rem;
-    margin-bottom: 0.6rem;
-}
-
-.sidebar-submenu a {
+.team-name {
     font-size: 0.85rem;
-    color: var(--text-muted);
-    padding: 0.3rem 0.5rem;
-}
-
-.sidebar-submenu a:hover {
-    color: var(--text-secondary);
-}
-
-/* Área do Conteúdo Principal */
-.content-area {
-    flex: 1;
-    padding: 2rem 2.5rem;
-}
-
-.card-container {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.card-container h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.card-container h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-top: 2.5rem;
-    margin-bottom: 1.2rem;
-}
-
-.card-container p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 1.25rem;
-}
-
-.card-container ul {
-    margin-left: 1.5rem;
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-}
-
-.card-container li {
-    margin-bottom: 0.6rem;
-    font-size: 1rem;
-}
-
-code {
-    background-color: var(--code-bg);
+    font-weight: 600;
     color: var(--text-primary);
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    font-size: 0.88rem;
-    border: 1px solid var(--border-color);
+    line-height: 1.2;
+}
+
+.team-role {
+    font-size: 0.72rem;
+    color: var(--text-muted);
 }
