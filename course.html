@@ -3,95 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VEINCourse</title>
-    <link rel="stylesheet" href="./style.css?v=2.0">
+    <title>Curso de Estatística | Iara da Silva</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header / Navbar -->
-    <header class="navbar">
+    <!-- Bar de Navegação Superior -->
+    <nav class="navbar">
         <div class="nav-container">
-            <a href="course.html" class="logo">
-                <span class="logo-icon">🌿</span>
-                <span class="logo-text-green">VEIN</span><span class="logo-text-white">Course</span>
-            </a>
+            <a href="index.html" class="logo">📊 <span>ANÁLISE DE DADOS E MODELAGEM ESTATÍSTICA APLICADA À SAÚDE</span> CURSO PROJETO O3 MOVER</a>
             <ul class="nav-links">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Ementa</a></li>
-                <li><a href="#" class="active">Lições</a></li>
-                <li><a href="#" target="_blank">Docs ↗</a></li>
-                <li><a href="#" target="_blank">GitHub ↗</a></li>
-                <li><a href="#" target="_blank">Discord ↗</a></li>
+                <li><a href="https://github.com/iaradasilva/curso_dados" target="_blank">GitHub ↗</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
-    <!-- Layout da Página -->
+    <!-- Estrutura Principal -->
     <div class="course-layout">
         <!-- Sidebar -->
         <aside class="sidebar">
-            
             <div class="sidebar-section">
-                <div class="sidebar-title">VISÃO GERAL</div>
+                <div class="sidebar-title">Visão geral do curso</div>
                 <ul class="sidebar-menu">
-                    <li><a href="?page=curso" id="link-curso">Curso</a></li>
-                    <li><a href="?page=ementa" id="link-ementa">Ementa</a></li>
-                    <li><a href="?page=instalacao" id="link-instalacao">Instalação</a></li>
-                    <li><a href="?page=inventarios" id="link-inventarios">Inventários</a></li>
+                    <li><a href="course.html?page=instalacao" id="link-instalacao">O que é o software r</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title">CONTEÚDO</div>
+                <div class="sidebar-title">Módulos</div>
                 <ul class="sidebar-menu">
-                    <li><a href="?page=lesson0" id="link-lesson0">Introdução ao VEIN</a></li>
-                    <li><a href="?page=onde-rodar" id="link-onde-rodar">Onde rodar?</a></li>
-                    <li>
-                        <a href="?page=brazil_bu" id="link-brazil_bu">brazil_bu</a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="?page=main_r">main.R</a></li>
-                            <li><a href="?page=config">config</a></li>
-                            <li><a href="?page=net">net</a></li>
-                            <li><a href="?page=traffic">traffic</a></li>
-                            <li><a href="?page=fuel_eval">fuel_eval</a></li>
-                        </ul>
+                    <li><a href="course.html?page=lesson1" id="link-lesson1">01. Análise exploratória</a></li>
+                    <li><a href="course.html?page=lesson2" id="link-lesson2">02. Estatística descritiva</a></li>
+                    <li><a href="course.html?page=lesson3" id="link-lesson3">03. Visualização dos dados</a></li>
+                    <li><a href="course.html?page=lesson4" id="link-lesson4">04. Dados de contagem</a></li>
+                    <li><a href="course.html?page=lesson5" id="link-lesson5">05. Modelos de regressão</a></li>
+                </ul>
+            </div>
+
+            <!-- NOVA SEÇÃO: EQUIPE DO CURSO -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Equipe do Curso</div>
+                <ul class="team-list">
+                    <li class="team-member">
+                        <img src="https://github.com/iaradasilva.png" alt="Iara da Silva" class="team-avatar">
+                        <div class="team-info">
+                            <span class="team-name">Iara da Silva</span>
+                            <span class="team-role">Docente / Pesquisadora</span>
+                        </div>
+                    </li>
+                    <li class="team-member">
+                        <img src="https://ui-avatars.com/api/?name=Nome+Membro&background=10B981&color=fff" alt="Membro da Equipe" class="team-avatar">
+                        <div class="team-info">
+                            <span class="team-name">Nome do Colaborador</span>
+                            <span class="team-role">Pesquisador / Tutor</span>
+                        </div>
                     </li>
                 </ul>
             </div>
 
         </aside>
 
-        <!-- Área Central -->
+        <!-- Área Principal -->
         <main class="content-area">
             <div class="card-container" id="lesson-content">
-                <!-- Conteúdo dinâmico injetado aqui -->
+                <p>Carregando aula...</p>
             </div>
         </main>
     </div>
 
+    <!-- Script de Carregamento -->
     <script>
         async function loadLesson() {
             const urlParams = new URLSearchParams(window.location.search);
-            let page = urlParams.get('page') || 'lesson0'; 
-
-            page = page.replace(/[^a-zA-Z0-9_-]/g, '');
-            if (!page) page = 'lesson0';
-
-            // Limpa item ativo anterior
+            const page = urlParams.get('page') || 'instalacao';
+            
+            // Destacar item selecionado
             document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
             const activeLink = document.getElementById(`link-${page}`);
-            if (activeLink) activeLink.classList.add('active');
+            if(activeLink) activeLink.classList.add('active');
 
             const contentDiv = document.getElementById('lesson-content');
 
             try {
-                const response = await fetch(`./lessons/${page}.html`);
+                const response = await fetch(`lessons/${page}.html`);
                 if (response.ok) {
                     contentDiv.innerHTML = await response.text();
                 } else {
                     contentDiv.innerHTML = `
-                        <h1>Conteúdo em Construção</h1>
-                        <p>A lição <strong>${page}</strong> ainda está sendo elaborada.</p>
+                        <span class="badge badge-blue">Em Breve</span>
+                        <h1>⚠️ Conteúdo em Construção</h1>
+                        <p>Esta lição está a ser preparada para o curso.</p>
+                        <div class="callout callout-info">
+                            💡 Volte em breve para conferir o material completo!
+                        </div>
                     `;
                 }
             } catch (error) {
@@ -99,20 +103,6 @@
             }
         }
 
-        // Troca de página sem refresh
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('.sidebar-menu a, .sidebar-submenu a');
-            if (link) {
-                const href = link.getAttribute('href');
-                if (href && href.startsWith('?page=')) {
-                    e.preventDefault();
-                    history.pushState(null, '', href);
-                    loadLesson();
-                }
-            }
-        });
-
-        window.addEventListener('popstate', loadLesson);
         window.addEventListener('DOMContentLoaded', loadLesson);
     </script>
 </body>
