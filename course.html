@@ -1,54 +1,83 @@
-<script>
-    async function loadLesson() {
-        const urlParams = new URLSearchParams(window.location.search);
-        let page = urlParams.get('page') || 'instalacao'; 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Dados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="course.html" class="logo">Curso<span>Dados</span></a>
+        </div>
+    </header>
 
-        // Sanitização contra Path Traversal e XSS
-        page = page.replace(/[^a-zA-Z0-9_-]/g, '');
-        if (!page) page = 'instalacao';
+    <div class="course-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Módulos</div>
+                <ul class="sidebar-menu">
+                    <li><a href="?page=instalacao" id="link-instalacao">Instalação</a></li>
+                    <li><a href="?page=lesson0" id="link-lesson0">Plataforma iSUS</a></li>
+                    <li><a href="?page=lesson1" id="link-lesson1">Análise Exploratória</a></li>
+                </ul>
+            </div>
+        </aside>
 
-        // Destacar o link ativo na sidebar
-        document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
-        const activeLink = document.getElementById(`link-${page}`);
-        if (activeLink) activeLink.classList.add('active');
+        <main class="content-area">
+            <div class="card-container" id="lesson-content">
+                <!-- O conteúdo das aulas será injetado aqui -->
+            </div>
+        </main>
+    </div>
 
-        const contentDiv = document.getElementById('lesson-content');
+    <script>
+        async function loadLesson() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let page = urlParams.get('page') || 'instalacao'; 
 
-        try {
-            // Busca o arquivo mantendo o caminho relativo correto no GitHub Pages
-            const filePath = `./lessons/${page}.html`;
-            const response = await fetch(filePath);
+            page = page.replace(/[^a-zA-Z0-9_-]/g, '');
+            if (!page) page = 'instalacao';
 
-            if (response.ok) {
-                const htmlText = await response.text();
-                contentDiv.innerHTML = htmlText;
-            } else {
-                console.error(`[404] Não foi possível carregar o arquivo: ${filePath}`);
-                contentDiv.innerHTML = `
-                    <span class="badge badge-blue">Em Breve</span>
-                    <h1>⚠️ Conteúdo em Construção</h1>
-                    <p>A lição <strong>${page}</strong> não foi encontrada em <code>lessons/${page}.html</code>.</p>
-                `;
+            document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById(`link-${page}`);
+            if (activeLink) activeLink.classList.add('active');
+
+            const contentDiv = document.getElementById('lesson-content');
+
+            try {
+                const filePath = `./lessons/${page}.html`;
+                const response = await fetch(filePath);
+
+                if (response.ok) {
+                    contentDiv.innerHTML = await response.text();
+                } else {
+                    contentDiv.innerHTML = `
+                        <span class="badge badge-blue">Em Breve</span>
+                        <h1>⚠️ Conteúdo em Construção</h1>
+                        <p>A lição <strong>${page}</strong> não foi encontrada em <code>lessons/${page}.html</code>.</p>
+                    `;
+                }
+            } catch (error) {
+                contentDiv.innerHTML = '<h1>Erro ao carregar o conteúdo.</h1>';
             }
-        } catch (error) {
-            console.error('Erro ao buscar o conteúdo:', error);
-            contentDiv.innerHTML = '<h1>Erro ao carregar a aula. Veja o Console (F12) para mais detalhes.</h1>';
         }
-    }
 
-    // Intercepta cliques nos links da sidebar
-    document.addEventListener('click', (e) => {
-        const link = e.target.closest('.sidebar-menu a');
-        if (link) {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('?page=')) {
-                e.preventDefault();
-                history.pushState(null, '', href);
-                loadLesson();
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.sidebar-menu a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('?page=')) {
+                    e.preventDefault();
+                    history.pushState(null, '', href);
+                    loadLesson();
+                }
             }
-        }
-    });
+        });
 
-    window.addEventListener('popstate', loadLesson);
-    window.addEventListener('DOMContentLoaded', loadLesson);
-</script>
+        window.addEventListener('popstate', loadLesson);
+        window.addEventListener('DOMContentLoaded', loadLesson);
+    </script>
+</body>
+</html>
