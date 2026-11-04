@@ -14,41 +14,33 @@
 
         const contentDiv = document.getElementById('lesson-content');
 
-        // Se estiver rodando sem servidor HTTP (file://), avisa no console
-        if (window.location.protocol === 'file:') {
-            console.warn('⚠️ AVISO: O fetch() pode ser bloqueado ao abrir arquivos diretamente no navegador via file://. Use um servidor local (ex: Live Server no VS Code).');
-        }
-
         try {
-            const filePath = `lessons/${page}.html`;
+            // Busca o arquivo mantendo o caminho relativo correto no GitHub Pages
+            const filePath = `./lessons/${page}.html`;
             const response = await fetch(filePath);
 
             if (response.ok) {
                 const htmlText = await response.text();
                 contentDiv.innerHTML = htmlText;
             } else {
-                console.error(`Erro ${response.status}: Não foi possível localizar o arquivo em "${filePath}"`);
+                console.error(`[404] Não foi possível carregar o arquivo: ${filePath}`);
                 contentDiv.innerHTML = `
                     <span class="badge badge-blue">Em Breve</span>
                     <h1>⚠️ Conteúdo em Construção</h1>
-                    <p>A lição <strong>${page}</strong> ainda não está disponível.</p>
-                    <div class="callout callout-info">
-                        💡 Verifique se o arquivo <code>lessons/${page}.html</code> existe na pasta do seu projeto.
-                    </div>
+                    <p>A lição <strong>${page}</strong> não foi encontrada em <code>lessons/${page}.html</code>.</p>
                 `;
             }
         } catch (error) {
-            console.error('Erro na requisição fetch:', error);
-            contentDiv.innerHTML = '<h1>Erro ao carregar o conteúdo. Abra o Console (F12) para ver os detalhes.</h1>';
+            console.error('Erro ao buscar o conteúdo:', error);
+            contentDiv.innerHTML = '<h1>Erro ao carregar a aula. Veja o Console (F12) para mais detalhes.</h1>';
         }
     }
 
-    // Intercepta o clique dos links da sidebar para navegação sem refresh
+    // Intercepta cliques nos links da sidebar
     document.addEventListener('click', (e) => {
         const link = e.target.closest('.sidebar-menu a');
         if (link) {
             const href = link.getAttribute('href');
-            // Apenas se for um link de parâmetro interno (ex: ?page=...)
             if (href && href.startsWith('?page=')) {
                 e.preventDefault();
                 history.pushState(null, '', href);
