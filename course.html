@@ -44,15 +44,16 @@
             <!-- Equipe do Curso -->
             <div class="sidebar-section">
                 <div class="sidebar-title">Equipe do Curso</div>
-                <ul class="team-list">
-                    <li class="team-member">
+                <div class="team-container">
+                    <div class="team-card">
                         <img src="https://github.com/iaradasilva.png" alt="Iara da Silva" class="team-avatar">
                         <div class="team-info">
                             <span class="team-name">Iara da Silva</span>
                             <span class="team-role">Docente / Pesquisadora</span>
+                            <span class="team-institution">Projeto O3 MOVER</span>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </aside>
 
@@ -64,7 +65,7 @@
         </main>
     </div>
 
-    <!-- Script de Carregamento -->
+    <!-- Script de Carregamento Dinâmico -->
     <script>
         async function loadLesson() {
             const urlParams = new URLSearchParams(window.location.search);
