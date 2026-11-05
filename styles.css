@@ -48,7 +48,7 @@ body {
 .logo {
     color: var(--accent-green);
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -138,7 +138,68 @@ body {
     font-weight: 600;
 }
 
-/* Área do Conteúdo Central */
+/* Equipe do Curso (Mini-Cards) */
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding-left: 0.8rem;
+}
+
+.team-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.team-card:hover {
+    background-color: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.3);
+    transform: translateY(-1px);
+}
+
+.team-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-green);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.team-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.team-role {
+    font-size: 0.73rem;
+    color: var(--accent-green);
+    font-weight: 500;
+    margin-top: 0.15rem;
+}
+
+.team-institution {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+}
+
+/* Área de Conteúdo Central */
 .content-area {
     flex: 1;
     padding: 2.5rem 3.5rem;
@@ -171,6 +232,14 @@ body {
     color: var(--text-primary);
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
+}
+
+.card-container h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
 }
 
 .card-container p {
@@ -258,7 +327,7 @@ pre code {
 .badge-green { background: rgba(16, 185, 129, 0.2); color: #34D399; }
 .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
 
-/* Rodapé da Aula (Navegação Ant / Próx) */
+/* Rodapé da Aula */
 .lesson-footer {
     display: flex;
     justify-content: space-between;
