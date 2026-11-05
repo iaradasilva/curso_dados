@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso de Estatística | Iara da Silva</title>
+    <title>Curso de Estatística | Projeto O3 MOVER</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,11 +11,8 @@
     <!-- Bar de Navegação Superior -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">📊 <span>ESTATÍSTICA</span>COURSE</a>
+            <a href="index.html" class="logo">📊 <span>ANÁLISE DE DADOS E MODELAGEM ESTATÍSTICA APLICADA À SAÚDE</span> CURSO PROJETO O3 MOVER</a>
             <ul class="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="course.html?page=syllabus">Ementa</a></li>
-                <li><a href="course.html?page=lesson1" class="active">Lições</a></li>
                 <li><a href="https://github.com/iaradasilva/curso_dados" target="_blank">GitHub ↗</a></li>
             </ul>
         </div>
@@ -26,21 +23,35 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">Visão Geral</div>
+                <div class="sidebar-title">Visão geral do curso</div>
                 <ul class="sidebar-menu">
-                    <li><a href="course.html?page=overview" id="link-overview">Apresentação</a></li>
-                    <li><a href="course.html?page=instalacao" id="link-instalacao">Ambiente & Instalação</a></li>
+                    <li><a href="course.html?page=instalacao" id="link-instalacao">O que é o software r</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <div class="sidebar-title">Módulos do Curso</div>
+                <div class="sidebar-title">Módulos</div>
                 <ul class="sidebar-menu">
-                    <li><a href="course.html?page=lesson1" id="link-lesson1">01. Análise Exploratória (EDA)</a></li>
-                    <li><a href="course.html?page=lesson2" id="link-lesson2">02. Medidas de Dispersão</a></li>
-                    <li><a href="course.html?page=lesson3" id="link-lesson3">03. Probabilidade & Distribuições</a></li>
-                    <li><a href="course.html?page=lesson4" id="link-lesson4">04. Inferência Estatística</a></li>
-                    <li><a href="course.html?page=lesson5" id="link-lesson5">05. Testes de Hipóteses</a></li>
+                    <li><a href="course.html?page=datasus" id="link-datasus">01. Download dados datasus</a></li>
+                    <li><a href="course.html?page=lesson1" id="link-lesson1">02. Análise exploratória</a></li>
+                    <li><a href="course.html?page=lesson2" id="link-lesson2">03. Estatística descritiva</a></li>
+                    <li><a href="course.html?page=lesson3" id="link-lesson3">04. Visualização dos dados</a></li>
+                    <li><a href="course.html?page=lesson4" id="link-lesson4">05. Dados de contagem</a></li>
+                    <li><a href="course.html?page=lesson5" id="link-lesson5">06. Modelos de regressão</a></li>
+                </ul>
+            </div>
+
+            <!-- Equipe do Curso -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">Equipe do Curso</div>
+                <ul class="team-list">
+                    <li class="team-member">
+                        <img src="https://github.com/iaradasilva.png" alt="Iara da Silva" class="team-avatar">
+                        <div class="team-info">
+                            <span class="team-name">Iara da Silva</span>
+                            <span class="team-role">Docente / Pesquisadora</span>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </aside>
@@ -57,9 +68,9 @@
     <script>
         async function loadLesson() {
             const urlParams = new URLSearchParams(window.location.search);
-            const page = urlParams.get('page') || 'lesson1';
+            const page = urlParams.get('page') || 'datasus';
             
-            // Destacar item selecionado
+            // Destacar item selecionado na sidebar
             document.querySelectorAll('.sidebar-menu a').forEach(link => link.classList.remove('active'));
             const activeLink = document.getElementById(`link-${page}`);
             if(activeLink) activeLink.classList.add('active');
@@ -74,7 +85,7 @@
                     contentDiv.innerHTML = `
                         <span class="badge badge-blue">Em Breve</span>
                         <h1>⚠️ Conteúdo em Construção</h1>
-                        <p>Esta lição está a ser preparada para o curso.</p>
+                        <p>Esta lição está sendo preparada para o curso.</p>
                         <div class="callout callout-info">
                             💡 Volte em breve para conferir o material completo!
                         </div>
